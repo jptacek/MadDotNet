@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>WI INETA UserGroup</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/bootstrap.min.css"/>
+</head>
+<body data-ng-app="chemistryApp">
+<h1> Filters</h1>
+
+<div class="container">
+    <div class="container" data-ng-controller="chemCtrl">
+        <h3>Periodic Elements</h3>
+
+        Element Name:<input type="text" data-ng-model="newElementName"/>
+        Element Atomic Number:<input type="text" data-ng-model="newElementAtomicNumber"/>
+        <button data-ng-click="addElement()">Add</button>
+        <table class="table table-striped tabled-bordered table-hover table-condensed">
+            <tr>
+                <th>Name</th>
+                <th>Atomic Number</th>
+                <th>Weight</th>
+                <th>Protons</th>
+                <th>Electrons</th>
+                <th>Neutrons</th>
+                <th>Melting</th>
+            </tr>
+            <tr data-ng-repeat="element in periodic.elements ">
+                <td><a href="http://en.wikipedia.org/wiki/{{element.name}}" Title="Wiki on {{element.name}}">{{element.name}}</a>
+                </td>
+                <td>{{element.atomicNumber}}</td>
+                <td>{{element.atomicWeight}}</td>
+                <td>{{protons(element)}}</td>
+                <td>{{electrons(element)}}</td>
+                <td>{{neutrons(element)}}</td>
+                <td>{{element.melting}}</td>
+            </tr>
+        </table>
+
+
+    </div>
+
+    <!-- end of body -->
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
+    <script>window.angular || document.write('<script src="libs/jquery.min.js"><\/script>')</script>
+
+    <script src="js/app.js"></script>
+    <script src="js/chemistryController.js"></script>
+    <script src="js/chemistry.js"></script>
+
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="../js/bootstrap.min.js"></script>
+</body>
+</html>

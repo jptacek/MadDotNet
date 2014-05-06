@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>WI INETA UserGroup - Hello World</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/bootstrap.min.css"/>
+
+</head>
+<body data-ng-app="chemistryApp">
+<h1>Filters and functions</h1>
+
+<div class="container" data-ng-controller="chemCtrl">
+    <a href="#" data-ng-click="swapView()">Swap</a>
+    <br/>
+
+
+    <div id="tableElements" data-ng-hide="showTable">
+        Element Name:<input type="text" data-ng-model="elementName"/>
+
+        &nbsp;Order:
+        <select data-ng-model="elementOrder">
+            <option value="name" selected>Name (ascending)</option>
+            <option value="-name">Name (descending)</option>
+            <option value="melting">Meling Point (asc)</option>
+            <option value="-melting">Melting Pint (desc)</option>
+        </select>
+        <table class="table table-striped tabled-bordered table-hover table-condensed">
+            <tr>
+                <th>Name</th>
+                <th>Atomic Number</th>
+                <th>Weight</th>
+                <th>Protons</th>
+                <th>Electrons</th>
+                <th>Neutrons</th>
+                <th>Melting</th>
+            </tr>
+            <tr data-ng-repeat="element in periodic.elements | filter:elementName| filter:filterSolids | orderBy:elementOrder">
+                <td><a href="http://en.wikipedia.org/wiki/{{element.name}}" Title="Wiki on {{element.name}}">{{element.name}}</a>
+                </td>
+                <td>{{element.atomicNumber}}</td>
+                <td>{{element.atomicWeight}}</td>
+                <td>{{protons(element)}}</td>
+                <td>{{electrons(element)}}</td>
+                <td>{{neutrons(element)}}</td>
+                <td>{{element.melting}}</td>
+            </tr>
+        </table>
+    </div>
+
+    <div id="listElements" data-ng-hide="!showTable">
+        <ul>
+            <li data-ng-repeat="element in periodic.elements">
+                <a href="http://en.wikipedia.org/wiki/{{element.name}}" Title="Wiki on {{element.name}}">{{element.name}}</a>-
+                {{element.atomicNumber}}
+            </li>
+        </ul>
+    </div>
+</div>
+
+<!-- end of body -->
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
+<script>window.angular || document.write('<script src="libs/jquery.min.js"><\/script>')</script>
+
+<script src="js/app.js"></script>
+<script src="js/chemistryController.js"></script>
+<script src="js/chemistry.js"></script>
+
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://code.jquery.com/jquery.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="../js/bootstrap.min.js"></script>
+</body>
+</html>
